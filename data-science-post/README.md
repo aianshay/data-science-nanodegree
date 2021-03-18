@@ -24,7 +24,7 @@ A blog post where one dataset is analyzed and I write about the insights obtaine
 - `images` some images used on the blog post and in the notebook.
 - `blog-post` is available [here](https://aian.me/2021/03/17/ds-post.html).
 
-## Acknowledgements
+## Acknowledgments
 
 Kudos to this [notebook](https://www.kaggle.com/allanbruno/helping-regular-people-price-listings-on-airbnb) from Allan Bruno, where I could find a functional way to remove outliers properly! 
 
