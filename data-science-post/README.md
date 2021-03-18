@@ -22,7 +22,7 @@ A blog post where one dataset is analyzed and I write about the insights obtaine
 - `airbnb-rio` contains the complete code of the analysis.
 - `data` contains the datasets used, if you want to run the notebook, please extract the files first.
 - `images` some images used on the blog post and in the notebook.
-- `blog-post` is available [here](https://aian.me/2021/03/17/ds.html).
+- `blog-post` is available [here](https://aian.me/2021/03/17/ds-post.html).
 
 ## Acknowledgements
 
