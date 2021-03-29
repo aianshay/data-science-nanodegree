@@ -13,6 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV 
 
 
 def load_data(database_path):
@@ -35,6 +36,8 @@ def load_data(database_path):
 
     engine = create_engine(f'sqlite:///{database_path}')
     df = pd.read_sql_table('messages', engine)
+    #drop non-binary values
+    df = df[df.related != 2]
 
     X = df['message']
     y = df.drop(columns=['message', 'original', 'genre', 'id']) 
@@ -48,7 +51,7 @@ def load_data(database_path):
 
 
 def process_text(text):
-    "Processes text removing puctuations, lowering case and lemmatizing."
+    """Processes text removing puctuations, lowering case and lemmatizing."""
 
     #remove punctuations
     sub_text = re.sub('[^A-Za-z0-9]', ' ', text)
@@ -68,7 +71,12 @@ def build_model():
     clf = RandomForestClassifier()
     pipeline = Pipeline([('vect', vectorizer), ('clf', clf)])
 
-    return pipeline
+    parameters = {'vect__ngram_range': [(1, 1), (1, 2)],
+              'clf__n_estimators' : [10, 50, 100]}
+            
+    cv = GridSearchCV(pipeline, parameters, scoring='f1_micro', n_jobs=-1, cv=3)
+    
+    return cv
 
 
 def evaluate_model(model, X_test, y_test, categories):
@@ -80,7 +88,7 @@ def evaluate_model(model, X_test, y_test, categories):
         y_true = y_test.iloc[:, i]
         y_preds = preds[:, i]
         print('Report for category {}: \n {}'
-                .format(col.upper(), classification_report(y_true, y_preds)))
+                .format(col.upper(), classification_report(y_true, y_preds, zero_division=1)))
 
 
 def save_model(model, save_path):
