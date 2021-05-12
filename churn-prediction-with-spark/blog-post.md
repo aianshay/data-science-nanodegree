@@ -2,9 +2,17 @@
 
 ![Image](https://raw.githubusercontent.com/aianshay/aianshay.github.io/master/_posts/images/customer.png)
 
+## Problem definition
+
 Churn is defined as the event when a user leaves or unsubscribes from a service. Predicting this event is already an important part of businesses as Netflix, Spotify and YouTube. When predicting this event, companies can offer incetives so the user doesn't leave the plataform, potentially saving a lot of money. Other than that, it's also an opportunity of understanding why users are leaving the product, and which improvements can be made.
 
-In this case, I'll be using pySpark, a Python API for manipulating distributed datasets and creating machine learning models. With it, it's easier to handle datasets that don't easily fit into memory. 
+## Strategy to solve the problem
+
+In this case, I'll be using pySpark, a Python API for manipulating distributed datasets and creating machine learning models. In this case, I will create a classification model that will predict if a user churned or not. With Spark, it's easier to handle datasets that don't easily fit into memory. 
+
+## Metrics
+
+As it is a classification problem, initially the accuracy will be considerd to evaluate those models. If in the exploratory data analysis process I find that the classes are unbalanced, then F1 score will be more suitable. 
 
 ## The Dataset
 
@@ -53,6 +61,8 @@ spark.sql("""select count (distinct userId) from sparkify_data""").show()
 ```
 
 ![Unique users](https://raw.githubusercontent.com/aianshay/aianshay.github.io/master/_posts/images/unique_users.png)
+
+There are 226 unique users in the dataset.
 
 
 Let's check how frequent each user is in the dataset with the following query:
@@ -344,25 +354,68 @@ evaluator = MulticlassClassificationEvaluator(
 
 ### Results
 
-The F1 score of each model was: 
+After trained, on the test set, the F1 score of each model was: 
 
 | Model  | F1 Score       |  
 | :-     |:-              |      
-|  RFC   |      0.800     |
+|  RFC   |      0.814     |
 |  LR    |      0.663     | 
 |  GBT   |      0.705     |      
 
 
-Random Forest had the highest score, so I went futher to investigate its feature importances:
 
+### Hyperparameter Tuning
+
+Random Forest had the highest score, so I went futher to find the best parameters using the Spark's classes `ParamGridBuilder` and `CrossValidator`:
+
+```python
+param_grid = ParamGridBuilder() \
+            .addGrid(rf_model.numTrees, [50, 100, 200]) \
+            .addGrid(rf_model.impurity, ['gini', 'entropy']) \
+            .build()
+
+cross_val = CrossValidator(estimator=rf,
+                           estimatorParamMaps=param_grid,
+                           evaluator=MulticlassClassificationEvaluator(),
+                           numFolds=3)
+```
+
+I had to setup which parameters to tune with `ParamGridBuilder`, in this case, the number of trees the model had and which function was used to measure the quality of a split inside those trees (gini or entropy). 
+
+I also used the `CrossValidator` class, which does the training and test using a 3-fold cross-validation to make sure the model is trained and tested on every part of the dataset. 
+
+As a result, the Random Forest had a slightly better F1 score of 0.84, for our purposes it stands as a good model for predicting churn, it gave the best result with 200 trees using gini impurity.
+
+I went futher to investigate its feature importances of the best model:
 
 ![Importances](https://raw.githubusercontent.com/aianshay/aianshay.github.io/master/_posts/images/importances.png)
 
-Number of active days and number of sessions were the most important features for predicting churning. While listening time and number of thumbs down had a similar and significance. 
+The number of active days had by far the biggest importance, with the number of thumbs down given in second place, which makes sense, maybe the user is having a bad experience on the app and that makes him more prone to churning, and the number of friends got the third place, on a tie with listening time.
+
+
+## Conclusion
+
+It was a long journey, let me summarize the steps we made:
+
+- Defined the churn problem
+- Got to know the dataset 
+- Did a bunch of features
+- Trained three models
+- Tuned Random Forest
+
+Now with the trained model we can predict if a user will churn or not considering his/her behavior inside the Sparkify app.
+
+### Reflections
+
+In the beggining of the project I wasn't so sure of how to exactly use the data to train a prediction model, I had to 'sleep with the problem' to visualize that, instead of just using the data, I could build new features on top of it.
+
+### Improvements
+
+Futher improvements can be made, specially on which criteria is used to calculate the number of songs a user listened, as it is now, it's only considering a song title, considering also the artist name could get more accurate numbers. Other than that, the dataset includes timestamps of every user behavior, this could be used for time series forecasting as well.
 
 ## Bonus
 
-If you want to check out how I analyzed the data, a notebook is available [here][https://github.com/aianshay/data-science-portifolio/tree/main/churn-prediction-with-spark]. 
+If you want to check out how I analyzed the data, a notebook is available [here](https://github.com/aianshay/data-science-portifolio/tree/main/churn-prediction-with-spark). 
 
 ## Acknowledgments
 
