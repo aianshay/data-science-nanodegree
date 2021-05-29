@@ -25,5 +25,5 @@ The goal of this project was to deploy a machine learning model that classifies 
 - Training a Random Forest classifier
 - Deploying the model on a webpage
 
-On the ETL part I used pandas, sqlalchemy and SQLite database. TO build the classifier I used sci-kit learn and to deploy the model I used bootstrap 5 on the frontend and Flask as the backend.
+On the ETL part I used pandas, sqlalchemy and SQLite database. To build the classifier I used sci-kit learn and to deploy the model I used bootstrap 5 on the frontend and Flask as the backend.
 
