@@ -1,6 +1,8 @@
+# Predicting Airbnb Prices
+
 ## Description
 
-A blog post where one dataset is analyzed and I write about the insights obtained. In this project, I analyze an AirBnB dataset of the city of Rio de Janeiro.
+In this project, I wrote a blog post where one dataset is analyzed and I write about the insights obtained. I used an AirBnB dataset of the city of Rio de Janeiro.
 
 ## Dependencies
 
@@ -11,7 +13,7 @@ A blog post where one dataset is analyzed and I write about the insights obtaine
 - matplotlib.pyplot (>=3.3.3)
 - numpy (>=1.19.5)
 
-## Key insights
+## Key Insights
 
 - Copacabana, Barra da Tijuca and Ipanema are by far the neighborhoods with the most accommodations.
 - The cheapest period to rent a place is from March to May.
@@ -28,5 +30,5 @@ A blog post where one dataset is analyzed and I write about the insights obtaine
 
 Kudos to this [notebook](https://www.kaggle.com/allanbruno/helping-regular-people-price-listings-on-airbnb) from Allan Bruno, where I could find a functional way to remove outliers properly! 
 
-To the awesome [Inside Airbnb](http://insideairbnb.com/) for providing the datasets!
+To the awesome [Inside Airbnb](http://insideairbnb.com/) for providing the datasets.
  

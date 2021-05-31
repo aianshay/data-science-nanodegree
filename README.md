@@ -27,3 +27,13 @@ The goal of this project was to deploy a machine learning model that classifies 
 
 On the ETL part I used pandas, sqlalchemy and SQLite database. To build the classifier I used sci-kit learn and to deploy the model I used bootstrap 5 on the frontend and Flask as the backend.
 
+### Recommendations with IBM
+
+In this project, I created different kinds of recommendations engines for the users of the IBM Watson Studio platform, it makes recommendations about new articles it thinks they will like. The dataset was provided by IBM, which contains interactions between the users and the articles. The building of such algorithms can be found in the notebook above, it is divided as the following:
+
+- Exploratory data analysis
+- Data cleaning/preprocessing
+- Rank-based Recommendations
+- User-based Collaborative Filtering
+- Content-based Recommendations
+- Matrix Factorization with SVD
