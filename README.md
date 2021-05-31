@@ -37,3 +37,7 @@ In this project, I created different kinds of recommendations engines for the us
 - User-based Collaborative Filtering
 - Content-based Recommendations
 - Matrix Factorization with SVD
+
+### Churn Prediction with Spark
+
+In this project, I used the dataset of Sparkify, a fictitious music streaming service, containing every user interaction inside the app. With this data I could build a Random Forest model that classifies if a user churned or not. More interestingly, the most powerful features for predicting a churn were number of active days in the app and the number of thumbs down a user has given. I blogged about the whole proccess [here](https://aian.me/2021/03/17/ds-post.html).

@@ -1,6 +1,6 @@
 ## Description
 
-Churn is defined as the event when a user leaves or unsubscribes from a service. Predicting this event is already an important part of businesses as Netflix, Spotify and YouTube. When predicting this event, companies can offer incetives so the user doesn't leave the plataform, potentially saving a lot of money. Other than thar, it's also an opportunity of understanding why users are leaving the product, and which improvements can be made.
+Churn is defined as the event when a user leaves or unsubscribes from a service. Predicting this event is already an important part of businesses as Netflix, Spotify and YouTube. When predicting this event, companies can offer incetives so the user doesn't leave the plataform, potentially saving a lot of money. Other than thar, it's also an opportunity of understanding why users are leaving the product, and which improvements can be made. Due to the size of the dataset, data is not provided here 
 
 ## Dependencies
 
