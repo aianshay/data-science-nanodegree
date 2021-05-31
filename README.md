@@ -40,3 +40,7 @@ In this project, I created different kinds of recommendations engines for the us
 ### Churn Prediction with Spark
 
 In this project, I used the dataset of Sparkify, a fictitious music streaming service, containing every user interaction inside the app. With this data I could build a Random Forest model that classifies if a user churned or not. More interestingly, the most powerful features for predicting a churn were number of active days in the app and the number of thumbs down a user has given. I blogged about the whole proccess [here](https://aian.me/2021/03/17/ds-post.html).
+
+### Gaussian Distributions
+
+I also built a Python package that implements[Gaussian](https://en.wikipedia.org/wiki/Normal_distribution) and [Binomial](https://en.wikipedia.org/wiki/Binomial_distribution) distributions. The repository can be found [here](https://github.com/aianshay/gaussian-binomial-dists) 

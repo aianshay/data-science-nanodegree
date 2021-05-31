@@ -13,6 +13,7 @@ When a disaster happens, a lot of posts flood social media and it's hard to find
 - Pandas (>= 1.1.5)
 - Plotly (>= 4.14.3)
 - sqlalchemy (>= 1.4.3)
+- bootstrap 5
 
 ## Instructions
 
