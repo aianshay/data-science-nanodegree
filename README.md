@@ -43,4 +43,4 @@ In this project, I used the dataset of Sparkify, a fictitious music streaming se
 
 ### Gaussian Distributions
 
-I also built a Python package that implements[Gaussian](https://en.wikipedia.org/wiki/Normal_distribution) and [Binomial](https://en.wikipedia.org/wiki/Binomial_distribution) distributions. The repository can be found [here](https://github.com/aianshay/gaussian-binomial-dists) 
+I also built a Python package that implements [Gaussian](https://en.wikipedia.org/wiki/Normal_distribution) and [Binomial](https://en.wikipedia.org/wiki/Binomial_distribution) distributions. The repository can be found [here](https://github.com/aianshay/gaussian-binomial-dists).
